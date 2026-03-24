@@ -1,0 +1,33 @@
+<html ng-app="myApp">
+<body>
+    <div ng-controller="myController">
+        <form name="myForm">
+            <h3>Enter your email:</h3>
+            <input type="email" name="email" ng-model="email" required
+                   ng-pattern="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/">
+            <p ng-show="myForm.email.$error.required">
+                Email is required!
+            </p>
+            <p ng-show="myForm.email.$error.email">
+                Invalid email format!
+            </p>
+            <p ng-show="myForm.email.$error.pattern">
+                Email must contain proper domain (e.g., .com, .in)
+            </p>
+            <p ng-show="myForm.email.$valid">
+                Valid Email ✅
+            </p>
+        </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myController", function($scope) {
+            $scope.email = "";
+        });
+    </script>
+
+</body>
+</html>
